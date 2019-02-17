@@ -1,6 +1,4 @@
 const double pi = 3.14;
-float radius = 1.0;
-String serialInput;
 
 void setup() {
   Serial.begin(115200);
@@ -10,16 +8,16 @@ void setup() {
 
 void loop() {
   if(Serial.available()) {
-    serialInput = Serial.readStringUntil('\n');
+    String serialInput = Serial.readStringUntil('\n');
     Serial.print(serialInput);
     Serial.print("\t");
-    float circumference = circleCircumference(serialInput.toFloat());
-    Serial.print("Circle circumference: ");
-    Serial.println(circumference);
+    Serial.println(circleCircumference(serialInput.toFloat()));
     Serial.print("Enter radius value: ");
   }
 }
 
-float circleCircumference(float radius) { 
-  return 2 * pi * radius;
+String circleCircumference(float radius) { 
+  float circumference = 2 * pi * radius;
+  String resultDescription = "Circle cirfumference: " + String(circumference);
+  return resultDescription;
 }
